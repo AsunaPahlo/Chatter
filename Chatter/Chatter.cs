@@ -10,7 +10,7 @@
 //    this list of conditions and the following disclaimer in the documentation
 //    and/or other materials provided with the distribution.
 // 
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS”
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS ï¿½AS ISï¿½
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
 // ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
@@ -32,7 +32,6 @@ using Chatter.Windows;
 using Dalamud.Interface.Textures;
 using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
-using ImGuiScene;
 using JetBrains.Annotations;
 
 namespace Chatter;
@@ -57,6 +56,7 @@ public sealed partial class Chatter : IDalamudPlugin
                    IPluginLog pluginLog,
                    IChatGui chatGui,
                    IClientState clientState,
+                   IPlayerState playerState,
                    ICommandManager commandManager,
                    ITextureProvider textureProvider,
                    IDataManager gameData,
@@ -84,7 +84,7 @@ public sealed partial class Chatter : IDalamudPlugin
 
             var dateManager = new DateHelper() as IDateHelper;
             var worldManager = new WorldManager(gameData);
-            var myself = new Myself(clientState, worldManager);
+            var myself = new Myself(clientState, playerState, worldManager);
             var friendManager = new FriendManager(worldManager);
             var errorWriter = new ChatErrorWriter(chatGui);
             var chatLogGenerator = new ChatLogGenerator(errorWriter);
